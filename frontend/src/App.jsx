@@ -1,12 +1,11 @@
 
-import './App.css'
 
 function App() {
-
+  
   return (
     <>
-      <div>WELLNEST</div>
-       
+      <div className="text-3xl">Hi</div>
+        
     </>
   )
 }
