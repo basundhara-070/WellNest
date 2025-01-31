@@ -3,6 +3,8 @@ import Navbar from "./components/Navbar"
 import Home from "./components/Home"
 import Score from "./components/score"
 import Tests from "./components/tests"
+import Chatbot from "./components/Chatbot"
+import GoogleMaps from "./components/googlemaps"
 
 function App() {
   
@@ -12,6 +14,8 @@ function App() {
       <Home></Home>
       <Score></Score>
       <Tests></Tests>
+      <Chatbot></Chatbot>
+      <GoogleMaps></GoogleMaps>
     </>
   )
 }
