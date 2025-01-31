@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion"; // Import Framer Motion
-import test_bg from '/test_bg.png'
+import test_bg from '/test_bg.jpg'
 
 const Tests = () => {
   // Animation variants for the heading
@@ -22,7 +22,7 @@ const Tests = () => {
     <div className="flex flex items-center justify-center min-h-screen  font-sans text-center py-16 px-4">
       {/* Heading with Framer Motion */}
       <div className="">
-        <img src={test_bg} alt="" />
+        <img src={test_bg} alt="" className="w-[40vw]" />
       </div>
       <div>
       <motion.h1
