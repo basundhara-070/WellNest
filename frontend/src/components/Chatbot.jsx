@@ -3,7 +3,7 @@ import chatbot from '/chatbot.jpg'; // Ensure the path to your image is correct
 
 export default function Chatbot() {
   return (
-    <div className='flex flex-col justify-center items-center mt-16 bg-gradient-to-r from-blue-50 to-cyan-50 shadow-2xl rounded-2xl p-12 m-8'>
+    <div className='flex flex-col justify-center items-center mt-16 bg-gradient-to-r from-blue-50 to-cyan-50 shadow-2xl rounded-2xl p-12 mx-32'>
       {/* Heading */}
       <h1 className='text-5xl font-semibold text-gray-800 mb-8 text-center'>
         Your Mental Wellness Companion

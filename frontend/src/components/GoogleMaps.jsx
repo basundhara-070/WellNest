@@ -99,7 +99,7 @@ const GoogleMaps = () => {
   if (!isLoaded) return <div>Loading Maps...</div>;
 
   return (
-    <div className="p-5 font-sans">
+    <div className="p-5 font-sans mt-32">
       {/* Page Title */}
       <h2 className="text-center mb-10 text-5xl font-semibold">
         Nearby Psychiatrists
@@ -116,7 +116,7 @@ const GoogleMaps = () => {
         />
         <button
           onClick={handleLocationSearch}
-          className="ml-4 p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="ml-4 p-3 bg-[#29b5f6d5] text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           Search
         </button>
@@ -155,7 +155,7 @@ const GoogleMaps = () => {
                 {visibleCount < psychiatrists.length ? (
                   <button
                     onClick={showMore}
-                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 mr-4"
+                    className="px-4 py-2 bg-[#29b5f6d5] text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 mr-4"
                   >
                     Show More
                   </button>
