@@ -5,6 +5,7 @@ import Score from './score'
 import Tests from './tests'
 import Chatbot from './Chatbot'
 import GoogleMaps from './googlemaps'
+import Youtube from './Youtube'
 import Footer from './Footer'
 export default function LoggedIn() {
   return (
@@ -15,6 +16,7 @@ export default function LoggedIn() {
         <Tests></Tests>
         <Chatbot></Chatbot>
         <GoogleMaps></GoogleMaps>
+        <Youtube></Youtube>
         <Footer></Footer>
     </div>
   )
