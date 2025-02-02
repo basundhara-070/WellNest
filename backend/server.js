@@ -1,28 +1,3 @@
-// const express = require('express');
-// const mongoose = require('mongoose');
-// const cors = require('cors');
-// const authRoutes = require('./routes/authRoutes');
-// require('dotenv').config();
-
-// const app = express();
-// app.use(cors());
-// app.use(express.json());
-
-// // Connect to MongoDB
-// mongoose.connect(process.env.MONGODB_URI)
-//   .then(() => console.log('Connected to MongoDB'))
-//   .catch((err) => console.error('MongoDB connection error:', err));
-
-// // Routes
-// app.use('/api', authRoutes);
-// app.get('/', (req, res) => {
-//     res.send('Hello, World!');
-//   });
-// const PORT = process.env.PORT || 5000;
-// app.listen(PORT, () => {
-//   console.log(`Backend running on http://localhost:${PORT}`);
-// });
-
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -32,8 +7,16 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// CORS setup to allow only your front-end
+const corsOptions = {
+  origin: 'https://well-nest-ten.vercel.app', // Your front-end URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
+  allowedHeaders: ['Content-Type'], // Allowed headers
+};
+
+app.use(cors(corsOptions)); // Use this instead of app.use(cors())
+
 // Middleware
-app.use(cors());
 app.use(express.json());
 
 // MongoDB connection
