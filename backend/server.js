@@ -9,10 +9,11 @@ const PORT = process.env.PORT || 5000;
 
 // CORS setup to allow requests from both local and production
 const corsOptions = {
-  origin: ['http://localhost:5173', 'https://well-nest-ten.vercel.app'], // Allow both local and production URLs
+  origin: ['http://localhost:5173', 'https://well-nest-ten.vercel.app'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type'],
+  allowedHeaders: ['Content-Type', 'Authorization'], // Add 'Authorization' here
 };
+
 
 app.use(cors(corsOptions)); // Use this instead of app.use(cors())
 
