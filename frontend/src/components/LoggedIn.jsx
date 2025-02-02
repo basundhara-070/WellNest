@@ -19,7 +19,7 @@ export default function LoggedIn() {
         <Score></Score>
         <TodoList></TodoList>
         <GoogleMaps></GoogleMaps>
-        <Youtube></Youtube>
+        {/* <Youtube></Youtube> */}
         <Footer></Footer>
         
     </div>
