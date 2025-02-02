@@ -1,76 +1,106 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react"; // Import useAuth0 hook
-import Button from "./Button";
-import wellnest_logo from "/wellnest_logo.png";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
+import { useAuth0 } from '@auth0/auth0-react'; // Import Auth0 hook
+import wellnest_logo from '/wellnest_logo.png';
 
 const Navbar = () => {
-  const [open, setOpen] = useState(false);
-  const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0(); // Use Auth0 hook
+  const [nav, setNav] = useState(false);
+  const { loginWithRedirect, logout, isAuthenticated } = useAuth0(); // Auth0 hooks
 
-  let Links = [
-    { name: "HOME", link: "/loggedin/home" },
-    { name: "PROFILE", link: "/loggedin/profile" }, // Link to the profile page
-    { name: "CONTACT US", link: "/loggedin/contact" },
+  // Toggle function for mobile menu
+  const handleNav = () => {
+    setNav(!nav);
+  };
+
+  // Navigation items with links
+  const navItems = [
+    { id: 1, text: 'Home', link: '/' },
+    { id: 2, text: 'Profile', link: '/loggedin/profile' },
+    { id: 3, text: 'Chatbot', link: 'https://wellnest-chat-bot.onrender.com/', external: true },
   ];
 
   return (
-    <div className="shadow-md w-full fixed top-0 left-0">
-      <div className="md:flex items-center justify-between bg-white py-4 md:px-10 px-7">
-        <div className="font-bold text-2xl cursor-pointer flex items-center font-[Poppins] text-gray-800">
-          <span className="text-3xl text-indigo-600 mr-1 pt-2">
-            <ion-icon name="logo-ionic"></ion-icon>
-          </span>
-          <img src={wellnest_logo} alt="logo" className="w-[12vw]" />
-        </div>
+    <div className='fixed flex justify-between items-center h-12 sm:h-16 w-full mx-auto px-16 text-white bg-white shadow'>
+      {/* Logo */}
+      <img src={wellnest_logo} alt="logo" className="w-[12vw] sm:w-[8vw]" />
 
-        <div
-          onClick={() => setOpen(!open)}
-          className="text-3xl absolute right-8 top-6 cursor-pointer md:hidden"
-        >
-          <ion-icon name={open ? "close" : "menu"}></ion-icon>
-        </div>
+      {/* Desktop Navigation */}
+      <ul className='hidden md:flex py-2'>
+        {navItems.map(item => (
+          <li key={item.id} className='hover:bg-[#acdeff] rounded-xl mx-12 my-2 p-2 px-4 text-black text-lg cursor-pointer duration-300 hover:text-black'>
+            {item.external ? (
+              <a href={item.link} target="_blank" rel="noopener noreferrer">{item.text}</a>
+            ) : (
+              <Link to={item.link}>{item.text}</Link>
+            )}
+          </li>
+        ))}
 
-        <ul
-          className={`md:flex md:items-center md:pb-0 pb-12 absolute md:static bg-white md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${
-            open ? "top-20" : "top-[-490px]"
-          }`}
-        >
-          {Links.map((link) => (
-            <li key={link.name} className="md:ml-8 text-xl md:my-0 my-7">
-              <Link to={link.link} className="text-gray-800 hover:text-gray-400 duration-500">
-                {link.name}
-              </Link>
-            </li>
-          ))}
+        {/* Logout Button */}
+        {isAuthenticated ? (
+          <button
+            onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}
+            className="ml-4 px-4 my-2 text-lg bg-[#29b5f6] text-white rounded-lg hover:bg-blue-800 duration-300"
+          >
+            Logout
+          </button>
+        ) : (
+          <button
+            onClick={() => loginWithRedirect()}
+            className="ml-4 bg-[#29b5f6] my-2 text-lg text-white rounded-lg hover:bg-blue-800 duration-300"
+          >
+            Login
+          </button>
+        )}
+      </ul>
 
-          {/* Show user profile if authenticated */}
-          {isAuthenticated && (
-            <li className="md:ml-8 text-xl md:my-0 my-7">
-              <img
-                src={user.picture}
-                alt={user.name}
-                className="w-10 h-10 rounded-full"
-              />
-            </li>
-          )}
-
-          {/* Show login or logout button based on authentication status */}
-          {isAuthenticated ? (
-            <button
-              className="bg-[#29b5f6d5] w-[8vw] mx-6 py-2 text-xl rounded-lg"
-              onClick={() => {
-                console.log("Logout button clicked"); // Debugging Log
-                logout({ logoutParams: { returnTo: window.location.origin } });
-              }}
-            >
-              Logout
-            </button>
-          ) : (
-            <button onClick={() => loginWithRedirect()}>Login</button>
-          )}
-        </ul>
+      {/* Mobile Navigation Icon */}
+      <div onClick={handleNav} className='block md:hidden cursor-pointer'>
+        {nav ? <AiOutlineClose size={25} className="text-blue-500" /> : <AiOutlineMenu size={25} className="text-blue-500" />}
       </div>
+
+      {/* Mobile Navigation Menu */}
+      <ul
+        className={`fixed md:hidden left-0 top-0 w-[60%] h-full border-r border-gray-900 bg-[#000300] ease-in-out duration-500 ${
+          nav ? 'left-0' : 'left-[-100%]'
+        }`}
+      >
+        {/* Mobile Logo */}
+        <h1 className='w-full text-3xl font-bold text-[#fff] m-4'>Wellnest</h1>
+
+        {/* Mobile Navigation Items */}
+        {navItems.map(item => (
+          <li key={item.id} className='p-4 border-b border-gray-600 rounded-xl hover:bg-gray-800 duration-300 hover:text-white cursor-pointer'>
+            {item.external ? (
+              <a href={item.link} target="_blank" rel="noopener noreferrer" onClick={handleNav}>
+                {item.text}
+              </a>
+            ) : (
+              <Link to={item.link} onClick={handleNav}>
+                {item.text}
+              </Link>
+            )}
+          </li>
+        ))}
+
+        {/* Logout Button in Mobile Menu */}
+        {isAuthenticated ? (
+          <button
+            onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}
+            className="m-4 px-4 bg-[#29b5f6] text-white rounded-lg hover:bg-blue-800 duration-300"
+          >
+            Logout
+          </button>
+        ) : (
+          <button
+            onClick={() => loginWithRedirect()}
+            className="m-4 px-4 bg-[#29b5f6] text-white rounded-lg hover:bg-blue-800 duration-300"
+          >
+            Login
+          </button>
+        )}
+      </ul>
     </div>
   );
 };

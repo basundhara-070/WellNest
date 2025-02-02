@@ -18,8 +18,7 @@ const Tests = () => {
 
   return (
     
-
-    <div className="flex flex items-center justify-center min-h-screen  font-sans text-center py-16 px-4">
+    <div className="flex flex-col sm:flex-row items-center justify-center sm:min-h-screen  font-sans text-center sm:py-16 px-4 mt-16 sm:mt-0">
       {/* Heading with Framer Motion */}
       <div className="">
         <img src={test_bg} alt="" className="w-[40vw]" />

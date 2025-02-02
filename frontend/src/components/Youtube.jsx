@@ -9,7 +9,7 @@ const Youtube = () => {
   const [anxietyVideos, setAnxietyVideos] = useState([]);
   const [ocdVideos, setOcdVideos] = useState([]);
 
-  const API_KEY = 'AIzaSyDsJCNzfJW29tn2LBVeJomPxACNedYcNaE'; // Replace with your YouTube API key
+  const API_KEY = 'AIzaSyBg4yJbvASvzdFff3H68uTftqcFOENDciA'; // Replace with your YouTube API key
 
   // Fetch videos for a specific query
   const fetchVideos = async (query, setVideos) => {
