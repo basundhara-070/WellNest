@@ -7,13 +7,12 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// CORS setup to allow requests from both local and production
+// CORS setup to allow only your front-end
 const corsOptions = {
-  origin: ['http://localhost:5173', 'https://well-nest-ten.vercel.app'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'], // Add 'Authorization' here
+  origin: ['https://well-nest-ten.vercel.app','http://localhost:5173/loggedin', 'http://localhost:5173'], // Your front-end URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
+  allowedHeaders: ['Content-Type'], // Allowed headers
 };
-
 
 app.use(cors(corsOptions)); // Use this instead of app.use(cors())
 
