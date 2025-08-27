@@ -1,8 +1,13 @@
 import React from "react";
 import { motion } from "framer-motion"; // Import Framer Motion
 import test_bg from '/test_bg.jpg'
+import { useAuth0 } from '@auth0/auth0-react';
 
 const Tests = () => {
+  const { user } = useAuth0();
+  const depressionUrl = `http://localhost:8501/?email=${user.email}`;
+  const anxietyUrl = `https://anxietytest.streamlit.app/?email=${user.email}`;
+  const ocdUrl = `https://ocdtest.streamlit.app/?email=${user.email}`;
   // Animation variants for the heading
   const headingVariants = {
     hidden: { opacity: 0, y: -50 },
@@ -37,7 +42,7 @@ const Tests = () => {
       <div className="flex flex-col md:flex-row gap-6">
         {/* Depression Test Button */}
         <motion.a
-          href="https://depressiontest.streamlit.app/"
+          href={depressionUrl}
           className="text-center bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-8 rounded-lg transform transition-all duration-300 hover:shadow-lg flex items-center justify-center gap-2"
           variants={buttonVariants}
           initial="hidden"
@@ -63,7 +68,7 @@ const Tests = () => {
 
         {/* Anxiety Test Button */}
         <motion.a
-          href="https://anxietytest.streamlit.app/"
+          href={anxietyUrl}
           className="text-center bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg transform transition-all duration-300 hover:shadow-lg flex items-center justify-center gap-2"
           variants={buttonVariants}
           initial="hidden"
@@ -89,7 +94,7 @@ const Tests = () => {
 
         {/* OCD Test Button */}
         <motion.a
-          href="https://ocdtest.streamlit.app/"
+          href={ocdUrl}
           className="text-center bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-8 rounded-lg transform transition-all duration-300 hover:shadow-lg flex items-center justify-center gap-2"
           variants={buttonVariants}
           initial="hidden"

@@ -8,6 +8,7 @@ import Chatbot from './Chatbot'
 import GoogleMaps from './GoogleMaps'
 import Youtube from './Youtube'
 import Footer from './Footer'
+import Dashboard from './Dashboard'
 export default function LoggedIn() {
   return (
     <div>
@@ -15,6 +16,7 @@ export default function LoggedIn() {
 
         <Home></Home>
         <Chatbot></Chatbot>
+        <Dashboard></Dashboard>
         <Tests></Tests>
         <Score></Score>
         <TodoList></TodoList>
