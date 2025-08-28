@@ -8,6 +8,7 @@ import Chatbot from './Chatbot'
 import GoogleMaps from './GoogleMaps'
 import Youtube from './Youtube'
 import Footer from './Footer'
+
 export default function LoggedIn() {
   return (
     <div>
@@ -19,7 +20,7 @@ export default function LoggedIn() {
         <Score></Score>
         <TodoList></TodoList>
         <GoogleMaps></GoogleMaps>
-        {/* <Youtube></Youtube> */}
+        <Youtube></Youtube>
         <Footer></Footer>
         
     </div>
