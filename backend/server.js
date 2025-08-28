@@ -12,7 +12,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 const corsOptions = {
-  origin: ['https://well-nest-ten.vercel.app','http://localhost:5173/loggedin', 'http://localhost:5173'], 
+  origin: ['https://well-nest-ten.vercel.app','http://localhost:5173/loggedin', 'http://localhost:5173', 'https://well-nest-final-vmv4.vercel.app'], 
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type'],
 };
