@@ -9,15 +9,10 @@ const Youtube = () => {
   const [anxietyVideos, setAnxietyVideos] = useState([]);
   const [ocdVideos, setOcdVideos] = useState([]);
 
-  const API_KEY = 'AIzaSyDX-gVzQqTfQjdfXtP-6-qD4NwrdCH4GKY'; // Replace with your YouTube API key
-
-  // Fetch videos for a specific query
   const fetchVideos = async (query, setVideos) => {
     try {
-      const response = await axios.get(
-        `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&type=video&maxResults=20&key=${API_KEY}`
-      );
-      setVideos(response.data.items);
+      const response = await axios.post("http://localhost:5000/api/youtube-search", { query });
+      setVideos(response.data);
     } catch (error) {
       console.error(`Error fetching ${query} videos:`, error);
     }
@@ -61,30 +56,24 @@ const Youtube = () => {
     ],
   };
 
-  // Render a carousel for a given set of videos and title
   const renderCarousel = (videos, title) => {
-    if (videos.length === 0) {
-      return <div className="text-center">Loading {title} videos...</div>;
-    }
 
     return (
       <div className="mb-12">
         <h2 className="text-2xl font-bold text-center mb-6">Know more about {title}</h2>
         <Slider {...settings}>
-          {videos.map((video) => (
-            <div key={video.id.videoId} className="px-2">
+          {videos.map((video, idx) => (
+            <div key={idx} className="px-2">
               <div className="bg-gray-800 rounded-lg overflow-hidden shadow-lg h-48">
-                <iframe
+                <a href={video.url} target='_blank'>
+                <img
                   className="w-full aspect-sqaure" // Fixed height for all videos
-                  src={`https://www.youtube.com/embed/${video.id.videoId}`}
-                  title={video.snippet.title}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
+                  src={video.thumbnail}
+                  title={video.title}
+                ></img></a>
                 <div className="p-4">
-                  <h2 className="text-white font-semibold">{video.snippet.title}</h2>
-                  <p className="text-gray-400 text-sm">{video.snippet.channelTitle}</p>
+                  <h2 className="text-white font-semibold">{video.title}</h2>
+                  <p className="text-gray-400 text-sm">{video.channel}</p>
                 </div>
               </div>
             </div>

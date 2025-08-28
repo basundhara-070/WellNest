@@ -3,10 +3,16 @@ const mongoose = require("mongoose");
 
 const UserScoreSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
-  depressionScore: { type: Number, default: 0 },
-  anxietyScore: { type: Number, default: 0 },
-  ocdScore: { type: Number, default: 0 },
-  wellnessScore: { type: Number, default: 0 },
+  depressionScores: { type: [Number], default: [] },
+  anxietyScores: { type: [Number], default: [] },
+  ocdScores: { type: [Number], default: [] },
+  wellnessScores: { type: [Number], default: [] },
+  updatedAt: { type: Date, default: Date.now }
+});
+
+UserScoreSchema.pre("save", function (next) {
+  this.updatedAt = Date.now();
+  next();
 });
 
 module.exports = mongoose.model("UserScore", UserScoreSchema);

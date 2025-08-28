@@ -1,11 +1,7 @@
 import streamlit as st
 import requests
-
-# Function to calculate depression score
 def calculate_score(responses):
     return sum(responses)
-
-# Suggestions based on depression level
 def get_suggestions(score):
     if 0 <= score <= 4:
         return "You seem to have no depression. Keep maintaining a healthy lifestyle! If you need support, our chatbot is always here to help."
@@ -18,11 +14,9 @@ def get_suggestions(score):
     elif 20 <= score <= 27:
         return "You might have severe depression. It's crucial to seek immediate help from a mental health professional. Please reach out, and our chatbot can assist you in finding the right resources."
 
-# Get email from query params
-query_params = st.experimental_get_query_params()
-email = query_params.get("email", [""])[0]  # Default to empty string if not provided
+query_params = st.query_params
+email = query_params.get("email", [""]) 
 
-# Streamlit UI
 st.title("Depression Test - WellNest")
 st.write("Answer the questions below to assess your mental health. This test is based on the PHQ-9 scale.")
 
@@ -47,17 +41,16 @@ for question in questions:
 
 if st.button("Submit"):
     score = calculate_score(responses)
-    st.write(f"Your total score is: {score}")
     st.write(get_suggestions(score))
 
     if email:
         try:
             response = requests.post(
-                "http://localhost:5000/api/depression-score",
+                "http://localhost:5000/api/test/depression-score",
                 json={"email": email, "score": score}
             )
             if response.status_code == 200:
-                st.success("Score sent to backend successfully!")
+                st.success(f"Your score is : {score}")
             else:
                 st.error(f"Failed to send score. Status code: {response.status_code}")
         except Exception as e:

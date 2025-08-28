@@ -3,6 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react"; // Import useAuth0 hook
 import Home from "./components/Home";
 import LoggedIn from "./components/LoggedIn";
 import Profile from "./components/Profile"; 
+import Dashboard from "./components/Dashboard";
 
 function App() {
   const { isAuthenticated, isLoading } = useAuth0(); // Use Auth0's authentication state
@@ -15,27 +16,26 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Redirect to /loggedin if authenticated, else show Home */}
         <Route
           path="/"
           element={isAuthenticated ? <Navigate to="/loggedin" /> : <Home />}
         />
-
-        {/* LoggedIn route - only accessible when authenticated */}
         <Route
           path="/loggedin"
           element={isAuthenticated ? <LoggedIn /> : <Navigate to="/" />}
         />
-
-
-<Route
+        <Route
           path="/loggedin/profile"
           element={
             isAuthenticated ? <Profile /> : <Navigate to="/" />
           }
         />
-        {/* Logout route */}
-
+        <Route
+          path="/loggedin/dashboard"
+          element={
+            isAuthenticated ? <Dashboard /> : <Navigate to="/" />
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

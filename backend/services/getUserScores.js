@@ -6,11 +6,12 @@ async function getUserScores(email) {
   try {
     const userScore = await UserScore.findOne({ email });
     if (!userScore) return null;
+
     return {
-      depressionScore: userScore.depressionScore,
-      anxietyScore: userScore.anxietyScore,
-      ocdScore: userScore.ocdScore,
-      wellnessScore: userScore.wellnessScore,
+      depressionScores: userScore.depressionScores, 
+      anxietyScores: userScore.anxietyScores,      
+      ocdScores: userScore.ocdScores,               
+      wellnessScores: userScore.wellnessScores,   
     };
   } catch (err) {
     console.error("Error fetching user scores:", err);
