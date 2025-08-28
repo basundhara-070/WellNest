@@ -18,7 +18,7 @@ const Dashboard = () => {
   const { user } = useAuth0();
   useEffect(() => {
     axios
-      .post("http://localhost:5000/api/user-scores", {
+      .post("https://wellnest-5zry.onrender.com/api/user-scores", {
         email: user.email,
       })
       .then((res) => setScores(res.data))

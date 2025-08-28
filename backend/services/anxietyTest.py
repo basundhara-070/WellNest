@@ -49,7 +49,7 @@ if st.button("Submit"):
     if email:
         try:
             response = requests.post(
-                "http://localhost:5000/api/test/anxiety-score", 
+                "https://wellnest-5zry.onrender.com/api/test/anxiety-score", 
                 json={"email": email, "score": score}
             )
             if response.status_code == 200:
