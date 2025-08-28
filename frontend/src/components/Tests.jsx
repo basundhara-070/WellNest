@@ -5,10 +5,10 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 const Tests = () => {
   const { user } = useAuth0();
-  const depressionUrl = `http://localhost:8501/?email=${user.email}`;
-  const anxietyUrl = `http://localhost:8502/?email=${user.email}`;
-  const ocdUrl = `http://localhost:8503/?email=${user.email}`;
-  
+  const depressionUrl = `https://depressiontest.streamlit.app/?email=${user.email}`;
+  const anxietyUrl = `https://anxietytest.streamlit.app/?email=${user.email}`;
+  const ocdUrl = `https://ocdtest.streamlit.app/?email=${user.email}`;
+
   // Animation variants for the heading
   const headingVariants = {
     hidden: { opacity: 0, y: -50 },

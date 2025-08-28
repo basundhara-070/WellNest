@@ -4,7 +4,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 export default function Score() {
   const { user } = useAuth0();
-  const wellnessUrl = `http://localhost:8504/?email=${user.email}`
+  const wellnessUrl = `https://wellnesscalculator.streamlit.app/?email=${user.email}`
   return (
     <div className='mt-16 mx-4 p-4 sm:mx-32 flex flex-col sm:flex-row sm:px-32 bg-gradient-to-r from-blue-50 to-cyan-50 shadow-2xl rounded-xl'>
         <div className='flex flex-col justify-center items-center sm:w-1/2'>
